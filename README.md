@@ -60,6 +60,12 @@ This starts a simple local fallback chat loop.
 Once the credentials are configured:
 
 ```powershell
+python agent.py dev
+```
+
+For the console-based microphone mode:
+
+```powershell
 python agent.py console
 ```
 

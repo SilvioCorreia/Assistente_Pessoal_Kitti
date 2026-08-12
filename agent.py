@@ -1,5 +1,9 @@
+# https://cloud.livekit.io/projects/p_3mi18fn6dfs/agents/console?identity=Silvio&agentName=Kitt
 #  .\executar_Kitt\Scripts\Activate.ps1
 #  python agent.py start
+#  python agent.py dev   -- para executar no modo de desenvolvimento
+#  python agent.py local -- modo de fallback sem as credenciais completas
+#  python agent.py console   --para abrir o microfone no terminal
 import os
 import sys
 from typing import Sequence
@@ -11,6 +15,21 @@ from livekit.plugins import noise_cancellation, google, deepgram, krisp
 
 from prompts import AGENT_INSTRUCTIONS, SESSION_INSTRUCTIONS
 from tools import get_weather, search_web, send_email
+
+from livekit.api import AccessToken, VideoGrants
+
+# Gerando token para o app Android se conectar
+token = (
+    AccessToken("APITzvtuxcafWBh", "LXBQZvrK3RNbnzDVrc6WGNyeeEodx1HdCoeZRiZ3VcKA")
+    .with_identity("android-app")
+    .with_grants(VideoGrants(room_join=True, room="sala-teste"))
+    .to_jwt()
+)
+
+print("\n" + "="*50)
+print("COPIE ESTE TOKEN PARA O ANDROID STUDIO:")
+print(token)
+print("="*50 + "\n")
 
 load_dotenv()
 

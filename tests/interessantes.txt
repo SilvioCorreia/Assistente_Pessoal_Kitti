@@ -1,0 +1,2 @@
+Para gerar token para colocar no android
+python -c "from livekit.api import AccessToken, VideoGrants; token = AccessToken('APITzvtuxcafWBh', 'LXBQZvrK3RNbnzDVrc6WGNyeeEodx1HdCoeZRiZ3VcKA').with_identity('android-app').with_grants(VideoGrants(room_join=True, room='sala-teste')).to_jwt(); print(token)"
